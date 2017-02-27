@@ -1,0 +1,30 @@
+nginx:
+  image: nginx
+  volumes: 
+    - "../nginx/conf.d/:/etc/nginx/conf.d/"
+    - "../applications/:/var/www/html/"
+  ports:
+    - "80:80"
+    - "443:443"
+  links:
+    - php_server
+    
+php_server:
+  build: php
+  volumes: 
+    - "../applications/:/var/www/html/"
+  links:
+    - mysql_server
+    - mongo_server
+
+mysql_server:
+  image: mysql
+  environment:
+    MYSQLROOT_PASSWORD: docker
+  volumes:
+    - "../data/mysql/:/var/lib/mysql/"
+
+mongo_server:
+  image: mongo
+  volumes:
+    - "../data/mongo/:/var/lib/mongodb/"
