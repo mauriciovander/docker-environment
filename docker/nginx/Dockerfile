@@ -1,5 +1,5 @@
 FROM nginx
 MAINTAINER mauriciovander@gmail.com
-COPY ./info.conf /etc/nginx/conf.d/info.conf
+ADD ./info.conf /etc/nginx/conf.d
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
