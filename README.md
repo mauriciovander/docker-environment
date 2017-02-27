@@ -20,8 +20,8 @@ Docker Setup for a complete PHP7 Dev Environment (Includes XDEBUG integration)
 mkdir -p ~/workspace/applications
 mkdir -p ~/workspace/nginx/conf.d
 cd ~/workspace 
-git clone https://github.com/mauriciovander/docker-compose.git
-cd ~/workspace docker-compose 
+git clone https://github.com/mauriciovander/docker-environment.git
+cd ~/workspace docker-environment
 docker-compose up -d
 
 ### Happy coding!
