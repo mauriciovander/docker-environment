@@ -29,9 +29,12 @@ mysql_server:
     MYSQL_ROOT_PASSWORD: docker
   volumes_from:
     - data_server
+  ports: 
+    - "3306:3306"
 
 mongo_server:
   image: mongo
   volumes_from:
     - data_server
-
+  ports: 
+    - "27017:27017"
