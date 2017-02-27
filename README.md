@@ -5,7 +5,7 @@ Docker Setup for a complete PHP7 Dev Environment (Includes XDEBUG integration)
 ## Sugested folder structure: 
 
 - ~/your_workspace/
-  - *docker-compose*/
+  - **docker-compose**/
     - docker-compose.yml
     - docker/php/
       - Dockerfile
