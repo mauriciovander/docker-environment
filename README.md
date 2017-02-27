@@ -24,6 +24,12 @@ mkdir -p ~/workspace/nginx/conf.d
 
 cd ~/workspace && git clone https://github.com/mauriciovander/docker-environment.git
 
+cp -r docker-environment/example/applications/info applications
+
+cp docker-environment/example/nginx/conf.d/info.conf nginx/conf.d
+
 cd docker-environment && docker-compose up -d
+
+docker ps
 
 ### Happy coding!
