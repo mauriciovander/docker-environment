@@ -10,7 +10,7 @@ nginx:
     - php_server
     
 php_server:
-  build: php
+  build: ./docker/php
   volumes: 
     - "../applications/:/var/www/html/"
   links:
