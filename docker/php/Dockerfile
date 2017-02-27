@@ -11,4 +11,6 @@ RUN apt-get update && apt-get upgrade -y && apt-get autoremove -y \
 ADD ./php.ini /usr/local/etc/php/
 ADD ./xdebug.ini /usr/local/etc/php/conf.d
 RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)\n" >> /usr/local/etc/php/conf.d/xdebug.ini
+RUN mkdir -p /var/www/html/info
+ADD ./index.php /var/www/html/info
 EXPOSE 9000
