@@ -17,14 +17,21 @@ php_server:
     - mysql_server
     - mongo_server
 
+data_server:  
+  image: busybox
+  volumes: 
+    - /var/lib/mysql
+    - /var/lib/mongodb
+
 mysql_server:
   image: mysql
   environment:
-    MYSQLROOT_PASSWORD: docker
-  volumes:
-    - "../data/mysql/:/var/lib/mysql/"
+    MYSQL_ROOT_PASSWORD: docker
+  volumes_from:
+    - data_server
 
 mongo_server:
   image: mongo
-  volumes:
-    - "../data/mongo/:/var/lib/mongodb/"
+  volumes_from:
+    - data_server
+
