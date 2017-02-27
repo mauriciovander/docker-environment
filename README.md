@@ -33,6 +33,10 @@ In PHP Storm, point your debug server to the IP address obtained by:
 ```
 docker inspect -f"{{.NetworkSettings.IPAddress}}" dockerenvironment_php_server_1
 ```
+- HOST {{IP_ADDRESS}}
+- PORT: 9000
+- IDE KEY: PHPSTORM
+
 
 ### Happy coding!
 
