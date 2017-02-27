@@ -28,6 +28,8 @@ cp -r docker-environment/example/applications/info applications
 
 cp docker-environment/example/nginx/conf.d/info.conf nginx/conf.d
 
+sed -i -- "s/{{HOST_IP}}/`ipconfig getifaddr en0`/g" docker-environment/docker/php/*.ini
+
 cd docker-environment && docker-compose up -d
 
 docker ps
