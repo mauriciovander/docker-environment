@@ -1,4 +1,4 @@
-FROM php:7-fp
+FROM php:7-fpm
 MAINTAINER mauriciovander@gmail.com
 RUN apt-get update && apt-get upgrade -y && apt-get autoremove -y \
     && apt-get install -y nano libmcrypt-dev libpng12-dev libjpeg-dev libpq-dev mysql-client curl \
