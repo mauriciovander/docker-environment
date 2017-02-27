@@ -15,7 +15,6 @@ Docker Setup for a complete PHP7 Dev Environment (Includes XDEBUG integration)
   - nginx/
     - conf.d/
   
-
 ## RUN
 
 ```
@@ -28,7 +27,36 @@ sed -i -- "s/{{HOST_IP}}/`ipconfig getifaddr en0`/g" docker-environment/docker/p
 cd docker-environment && docker-compose up -d
 
 docker ps
+```
+
+In PHP Storm, point your debug server to the IP address obtained by:
+```
 docker inspect -f"{{.NetworkSettings.IPAddress}}" dockerenvironment_php_server_1
 ```
 
 ### Happy coding!
+
+
+
+Note: 
+If you change your host to a different network, you'll need to edit the files in 
+docker-environment/docker/php/*.ini to the new IP address of your host.
+After doing that, create again the php_server image
+
+get the list of active containers: 
+```
+docker ps
+```
+```
+CONTAINER ID        IMAGE                         ...   NAMES
+c10942823941        dockerenvironment_php_server  ...   dockerenvironment_php_server_1
+```
+```
+docker stop dockerenvironment_php_server_1
+docker rm dockerenvironment_php_server_1
+docker image rm dockerenvironment_php_server
+```
+Create the container
+```
+docker-compose up -d
+```
