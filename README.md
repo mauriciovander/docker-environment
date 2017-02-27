@@ -40,9 +40,12 @@ docker inspect -f"{{.NetworkSettings.IPAddress}}" dockerenvironment_php_server_1
 
 ### Happy coding!
 
+Add your projects to the `applications` folder, create nginx .conf files and point your local domain names to `127.0.0.1` in your `/etc/hosts` file
+
+(if 127.0.0.1 doesn't work, use the IP of your Docker default machine)
 
 
-Note: 
+### Note: 
 If you change your host to a different network, you'll need to edit the files in 
 docker-environment/docker/php/*.ini to the new IP address of your host.
 After doing that, create again the php_server image
