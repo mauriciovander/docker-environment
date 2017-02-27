@@ -22,12 +22,8 @@ mkdir -p ~/workspace/applications
 
 mkdir -p ~/workspace/nginx/conf.d
 
-cd ~/workspace 
+cd ~/workspace && git clone https://github.com/mauriciovander/docker-environment.git
 
-git clone https://github.com/mauriciovander/docker-environment.git
-
-cd ~/workspace docker-environment
-
-docker-compose up -d
+cd docker-environment && docker-compose up -d
 
 ### Happy coding!
