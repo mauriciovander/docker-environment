@@ -32,4 +32,6 @@ cd docker-environment && docker-compose up -d
 
 docker ps
 
+docker inspect -f"{{.NetworkSettings.IPAddress}}" dockerenvironment_php_server_1
+
 ### Happy coding!
