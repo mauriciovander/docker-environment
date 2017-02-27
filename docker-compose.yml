@@ -1,23 +1,23 @@
 
-php_server:
-  build: ./docker/php
-  volumes: 
-    - "../applications/:/var/www/html/"
-  links:
-    - mysql_server
-    - mongo_server
-
 nginx:
   build: ./docker/nginx
   volumes: 
-    - "../nginx/conf.d/:/etc/nginx/conf.d/"
-    - "../applications/:/var/www/html/"
+    - "../nginx/conf.d:/etc/nginx/conf.d"
+    - "../applications:/var/www/html"
   ports:
     - "80:80"
     - "443:443"
   links:
     - php_server
-   
+
+php_server:
+  build: ./docker/php
+  volumes: 
+    - "../applications:/var/www/html"
+  links:
+    - mysql_server
+    - mongo_server
+
 data_server:  
   image: busybox
   volumes: 
