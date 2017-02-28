@@ -3,14 +3,23 @@ MAINTAINER mauriciovander@gmail.com
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get autoremove -y \
-    && apt-get install -y nano libmcrypt-dev libpng12-dev libjpeg-dev libpq-dev mysql-client curl \
+    && apt-get install -y git nano libmcrypt-dev libpng12-dev libjpeg-dev libpq-dev mysql-client curl \
     && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install mcrypt gd mbstring pdo pdo_mysql zip \
     && pecl install xdebug \
     && pecl install mongodb \
     && rm -rf /tmp/pear
+
+RUN curl -O https://pear.php.net/go-pear.phar
+RUN php -d detect_unicode=0 go-pear.phar
+
 ADD ./php.ini /usr/local/etc/php/
 ADD ./xdebug.ini /usr/local/etc/php/conf.d
 RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)\n" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+RUN git clone https://github.com/php/php-src.git && \
+	cd php-src/ext/pcntl/ && \
+	phpize && ./configure && make install && \
+	
 EXPOSE 9000
