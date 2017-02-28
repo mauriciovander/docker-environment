@@ -1,5 +1,8 @@
 FROM php:7-fpm
+
 MAINTAINER mauriciovander@gmail.com
+
+# Dependencies
 RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get autoremove -y \
@@ -11,15 +14,19 @@ RUN apt-get update \
     && pecl install mongodb \
     && rm -rf /tmp/pear
 
+# PEAR
 RUN curl -O https://pear.php.net/go-pear.phar
 RUN php -d detect_unicode=0 go-pear.phar
 
+# PCNTL  extension
+RUN git clone https://github.com/php/php-src.git && \
+	cd php-src/ext/pcntl/ && \
+	phpize && ./configure && make install
+
+# PHP configuration files
 ADD ./php.ini /usr/local/etc/php/
 ADD ./xdebug.ini /usr/local/etc/php/conf.d
 RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)\n" >> /usr/local/etc/php/conf.d/xdebug.ini
 
-RUN git clone https://github.com/php/php-src.git && \
-	cd php-src/ext/pcntl/ && \
-	phpize && ./configure && make install && \
-	
+# open port
 EXPOSE 9000
