@@ -14,10 +14,6 @@ RUN apt-get update \
     && pecl install mongodb \
     && rm -rf /tmp/pear
 
-# PEAR
-RUN curl -O https://pear.php.net/go-pear.phar
-RUN php -d detect_unicode=0 go-pear.phar
-
 # PCNTL  extension
 RUN git clone https://github.com/php/php-src.git && \
 	cd php-src/ext/pcntl/ && \
